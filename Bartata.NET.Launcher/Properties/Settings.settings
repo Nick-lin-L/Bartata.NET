@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bartata.Launcher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="appId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pcg-oidc-demo-client</Value>
+    </Setting>
+    <Setting Name="realmHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://iamlab.pouchen.com/auth/realms/pcg</Value>
+    </Setting>
+    <Setting Name="redirectUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8080/</Value>
+    </Setting>
+    <Setting Name="authFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D://.auth</Value>
+    </Setting>
+    <Setting Name="launchProgram" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\SVN\IAM_Code\projects\pcg-oidc\trunk\dotnet\Bartata.NET\Bartata.NET.Sample.DeskApplication\bin\Debug\Bartata.Sample.DeskApplication.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,39 @@
+
+variables:
+  NUGET_PATH: 'C:\NuGet\nuget.exe'
+  MSBUILD_PATH: 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe'
+
+stages:
+  - build
+  - deploy
+
+  
+cache:
+  key: $CI_PROJECT_ID
+  paths:
+    - Bartata.NET/bin/
+    - Bartata.NET.MVC/bin/
+    - Bartata.NET.WebForm/bin/
+    - packages
+
+build_job:
+  stage: build
+  script:
+    - CHCP 65001
+    - '& nuget restore'  # restore Nuget dependencies
+    - '& "$env:MSBUILD_PATH" .\Bartata.NET\Bartata.NET.csproj /p:Configuration=Release'
+    - '& "$env:MSBUILD_PATH" .\Bartata.NET.MVC\Bartata.NET.MVC.csproj /p:Configuration=Release'
+    - '& "$env:MSBUILD_PATH" .\Bartata.NET.WebForm\Bartata.NET.WebForm.csproj /p:Configuration=Release'
+
+deploy:
+  stage: deploy
+  script:
+    - echo "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/nuget/index.json"
+    - '& nuget pack .\Bartata.NET\Bartata.NET.csproj -Properties  Configuration=Release'
+    - '& nuget pack .\Bartata.NET.MVC\Bartata.NET.MVC.csproj -Properties  Configuration=Release'
+    - '& nuget pack .\Bartata.NET.WebForm\Bartata.NET.WebForm.csproj -Properties  Configuration=Release'
+    - '& nuget source add -Name gitlab -Source "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/nuget/index.json" -Username gitlab-ci-token -Password $CI_JOB_TOKEN -ConfigFile NuGet.config'
+    - '& nuget push "*.nupkg" -Source gitlab -ConfigFile NuGet.config'
+    - '& nuget push *.nupkg ${NUGET_KEY} -source ${NUGET_SOURCE}'
+
+

@@ -1,0 +1,10 @@
+﻿<Window x:Class="Bartata.Sample.DeskApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Label Content="Hi!" HorizontalAlignment="Left" Margin="114,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="userNameLabel" Content="Label" HorizontalAlignment="Left" Margin="176,103,0,0" VerticalAlignment="Top" />
+
+    </Grid>
+</Window>
